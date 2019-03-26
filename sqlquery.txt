@@ -6,12 +6,14 @@ insert into CourseMaster(Nam,DURATION,TECHNOLOGY,fees) values ('Core Java',2,'ja
 insert into CourseMaster(Nam,DURATION,TECHNOLOGY,fees) values ('Advance Java',2,'java',2000);
 insert into CourseMaster(Nam,DURATION,TECHNOLOGY,fees) values ('Python',2,'python',2500);
 select * from CourseMaster;
+
 create table studentMaster(ID integer auto_increment,Name varchar(20) not null,passord varchar(20),
 email varchar(20),mobile varchar(20),city varchar(20),primary key(id));
 insert into studentMaster(name,passord,email,mobile,city) values ('jack','jack123','jack@gmail.com','123456','london');
 insert into studentMaster(name,passord,email,mobile,city) values ('bob','bob123','bob@gmail.com','123457','paris');
 insert into studentMaster(name,passord,email,mobile,city) values ('satya','satya123','satya@gmail.com','123489','new york');
 select * from studentMaster;
+
 create table CoursesEnrolled (eid integer auto_increment,studentid integer not null,courseid integer not null,feeid integer ,
 primary key(eid),Foreign key(courseid) references CourseMaster(id),Foreign key(studentid) references studentMaster(ID));
 select * from CoursesEnrolled;
@@ -23,17 +25,6 @@ CourseMaster(id,Nam,DURATION,TECHNOLOGY,fees)
 studentMaster(id,name,passord,email,mobile,city),
 CoursesEnrolled(eid,studentid,courseid,feeid)
 feepaid(id,studentid,amount)
-
-Update studentMaster Inner join CoursesEnrolled on CoursesEnrolled.studentid=studentMaster.id Inner join CourseMaster on CoursesEnrolled.courseid=CourseMaster.id Inner join feepaid on feepaid.id=CoursesEnrolled.eid set amount=amount+6 where feepaid.id=6;
-select * from feepaid;
-
-select name,nam,eid,fees,studentid,amount,courseid from studentMaster Inner join CoursesEnrolled on CoursesEnrolled.studentid=studentMaster.id Inner join CourseMaster on CoursesEnrolled.courseid=CourseMaster.id Inner join feepaid on feepaid.id=CoursesEnrolled.courseid;
-
-select name,nam,eid,studentid,courseid,amount from studentMaster Inner join CoursesEnrolled on CoursesEnrolled.studentid=studentMaster.id Inner join CourseMaster on CoursesEnrolled.courseid=CourseMaster.id Inner join feepaid on feepaid.id=CoursesEnrolled.courseid;
-
-select name,nam,eid,fees,studentid,amount,courseid from studentMaster Inner join CoursesEnrolled on CoursesEnrolled.studentid=studentMaster.id Inner join CourseMaster on CoursesEnrolled.courseid=CourseMaster.id Inner join feepaid on feepaid.id=CoursesEnrolled.eid; 
-
-
 
 create table quessolmaster (id integer auto_increment,student varchar(20),
 course varchar(20),question varchar(1000)  ,solution varchar(1000),primary key(id));
